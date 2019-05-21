@@ -1,14 +1,19 @@
 <template>
   <main>
     <AddCategory v-if="shouldShowAddCategory" v-on:addCategory="addCategory" />
-    <NavBar :categories=categories v-on:triggerShowAddCategory=triggerShowAddCategory />
-    <div class="container flex">
-      <div class="w-1/2">
-        <BillsTable />
+    <div v-else>
+      <AddBill v-if="shouldShowAddBill" :categories=categories v-on:addBill="addBill"/>
+      <div v-else>
+        <NavBar :categories=categories v-on:triggerShowAddCategory=triggerShowAddCategory />
+        <div class="container flex">
+          <div class="w-1/2">
+            <BillsTable />
+          </div>
+        <div class="w-1/2">
+          <Chart :bills="activeBills" />
+        </div>
       </div>
-      <div class="w-1/2">
-        <Chart :bills="activeBills" />
-      </div>
+    </div>
     </div>
   </main>
 </template>
