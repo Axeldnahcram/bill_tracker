@@ -1,5 +1,6 @@
 <template>
   <main>
+    <AddCategory v-if="shouldShowAddCategory" v-on:addCategory="addCategory" />
     <NavBar />
     <div class="container flex">
       <div class="w-1/2">
@@ -27,6 +28,19 @@ export default {
     BillsTable,
     Chart,
     NavBar
+  },
+  data() {
+    return {
+      bills: [],
+      categories: [],
+      shouldShowAddCategory: true
+    }
+  },
+  methods: {
+    addCategory(category) {
+      this.categories.push(category)
+      this.shouldShowAddCategory = false
+    }
   }
 };
 </script>
