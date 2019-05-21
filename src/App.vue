@@ -1,5 +1,15 @@
 <template>
-  <main></main>
+  <main>
+    <NavBar />
+    <div class="container flex">
+      <div class="w-1/2">
+        <BillsTable />
+      </div>
+      <div class="w-1/2">
+        <Chart :bills="activeBills" />
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
