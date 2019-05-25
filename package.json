@@ -9,9 +9,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
     "node-gyp": "^3.6.1",
     "vue": "^2.6.10",
+    "vue-chartjs": "^3.4.2",
     "vue-moment": "^4.0.0",
     "vuejs-datepicker": "^1.5.4"
   },

@@ -1,48 +1,48 @@
 <template>
   <main>
-    <AddCategory v-if="shouldShowAddCategory" v-on:addCategory="addCategory" />
+    <AddCategory v-if="shouldShowAddCategory" v-on:addCategory="addCategory"/>
     <div v-else>
       <AddBill v-if="shouldShowAddBill" :categories=categories v-on:addBill="addBill"/>
       <div v-else>
         <NavBar :categories=categories v-on:triggerShowAddCategory=triggerShowAddCategory />
         <div class="container flex">
           <div class="w-1/2">
-      <BillsTable :bills="bills" v-on:triggerShowAddBill="triggerShowAddBill" v-on:removeBill="removeBill" />
+            <BillsTable :bills="bills" v-on:triggerShowAddBill="triggerShowAddBill" v-on:removeBill="removeBill" />
           </div>
-        <div class="w-1/2">
-          <Chart />
+          <div class="w-1/2">
+            <Chart :bills="bills"/>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </main>
 </template>
 
 <script>
-import AddCategory from "./components/AddCategory"
-import AddBill from "./components/AddBill"
-import BillsTable from "./components/BillsTable"
-import Chart from "./components/Chart"
-import NavBar from "./components/NavBar"
 import Vue from 'vue'
+import AddCategory from './components/AddCategory.vue'
+import AddBill from './components/AddBill.vue'
+import NavBar from './components/NavBar.vue'
+import Chart from './components/Chart.vue'
+import BillsTable from './components/BillsTable.vue'
+
 Vue.use(require('vue-moment'))
 
-
 export default {
-  name: "app",
+  name: 'app',
   components: {
     AddCategory,
     AddBill,
-    BillsTable,
     Chart,
+    BillsTable,
     NavBar
   },
   data() {
     return {
       bills: [],
       categories: [],
-      shouldShowAddCategory: true,
-      shouldShowAddBill: true
+      shouldShowAddCategory: false,
+      shouldShowAddBill: false
     }
   },
   methods: {
@@ -76,27 +76,16 @@ export default {
   },
   mounted() {
     if (localStorage.getItem('bills')) {
-    this.bills = JSON.parse(localStorage.getItem('bills'))
+      this.bills = JSON.parse(localStorage.getItem('bills'))
     }
 
     if (localStorage.getItem('categories')) {
       this.categories = JSON.parse(localStorage.getItem('categories'))
     }
 
-    if (!this.categories.length && !this.categories.length) {
+    if (!this.bills.length && !this.categories.length) {
       this.shouldShowAddCategory = true
     }
   }
-};
-</script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
-</style>
+</script>
