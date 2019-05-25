@@ -7,7 +7,7 @@
         <NavBar :categories=categories v-on:triggerShowAddCategory=triggerShowAddCategory />
         <div class="container flex">
           <div class="w-1/2">
-      <BillsTable :bills="bills" v-on:triggerShowAddBill="triggerShowAddBill" />
+      <BillsTable :bills="bills" v-on:triggerShowAddBill="triggerShowAddBill" v-on:removeBill="removeBill" />
           </div>
         <div class="w-1/2">
           <Chart />
@@ -58,7 +58,12 @@ export default {
       this.shouldShowAddCategory = true
     },
     triggerShowAddBill() {
-  this.shouldShowAddBill = true
+      this.shouldShowAddBill = true
+    },
+    removeBill(index) {
+      this.bills = this.bills
+        .slice(0, index)
+        .concat(this.bills.slice(index + 1, this.bills.length))
     }
   },
   watch: {
