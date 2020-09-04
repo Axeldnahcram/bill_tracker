@@ -14,7 +14,7 @@
     "node-gyp": "^3.6.1",
     "vue": "^2.6.10",
     "vue-chartjs": "^3.4.2",
-    "vue-moment": "^4.0.0",
+    "vue-moment": "^4.1.0",
     "vuejs-datepicker": "^1.5.4"
   },
   "devDependencies": {
